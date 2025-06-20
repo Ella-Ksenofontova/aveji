@@ -20,10 +20,14 @@ const inputs = document.querySelectorAll("#email, #given-name, #phone");
 
 for (let input of inputs) {
   input.addEventListener("focus", event => {
-    event.target.previousElementSibling.classList.add("focused");
+    if (!event.target.previousElementSibling.classList.contains("focused")) {
+      event.target.previousElementSibling.classList.add("focused");
+    }
   });
   input.addEventListener("blur", event => {
-    event.target.previousElementSibling.classList.remove("focused");
+    if (event.target.value.length === 0) {
+      event.target.previousElementSibling.classList.remove("focused");
+    }
   });
 }
 
